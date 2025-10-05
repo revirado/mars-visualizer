@@ -45,8 +45,8 @@ export default function MarsVisualizerView() {
 return (
     <div className={styles.container}>
       <Header
-        title="Mars Perseverance Rover Photos"
-        subtitle="Nabla Team - v0.1.0 prototype"
+        title="Mars Perseverance: Through the Rover's Eyes"
+        subtitle="Browse Martian surface photos by mission day and camera - Nabla Team - v0.1.2 prototype"
         bannerImage={bannerImageUrl}
       />
 
