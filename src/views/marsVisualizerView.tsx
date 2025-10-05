@@ -4,12 +4,12 @@ import React from "react";
 import { useMarsPhotos } from "@/context/MarsPhotosContext";
 import styles from "./MarsVisualizerView.module.css";
 
-import FilterPanel from "@/components/FilterPanel/FilterPanel";
 import LoadingState from "@/components/loading-state/LoadingState";
 import ErrorState from "@/components/error-state/ErrorState";
 import ImageGrid from "@/components/image-grid/ImageGrid";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
+import FilterWizard from "@/components/FilterWizard/FilterWizard";
 
 
 export default function MarsVisualizerView() {
@@ -34,38 +34,34 @@ export default function MarsVisualizerView() {
 
   return (
     <div className={styles.container}>
-      <Header 
+      <Header
         title="Mars Perseverance Rover Photos"
         subtitle="Nabla Team - v0.1.0 prototype"
         bannerImage={bannerImageUrl}
       />
-      
+
       <main >
         {/* Panel de Filtros */}
-        <FilterPanel
-          sol={sol}
+        <FilterWizard
+          sol={sol || 0}
           maxSol={maxSol}
-          earthDate={earthDate}
-          camName={camName}
-          page={page}
-          totalPhotos={totalPhotos}
+          camName={camName || ""}
           availableCameras={availableCameras}
           onSolChange={(value) => setSol?.(value)}
           onCamChange={(value) => setCamName?.(value)}
-          onPageChange={(value) => setPage?.(value)}
-          onRefresh={refresh}
+          onSearch={refresh}
         />
 
         {/* estados de carga y error */}
         {loading && <LoadingState />}
         {error && <ErrorState message={error} />}
-        
+
         {/* Resultados */}
         {!loading && !error && (
           <div className={styles.resultsSection}>
             <div className={styles.resultsHeader}>
               <h2 className={styles.resultsTitle}>
-                {photoUrls.length > 0 
+                {photoUrls.length > 0
                   ? `${photoUrls.length} picture(s) found`
                   : "No pictures found"
                 }
@@ -78,7 +74,7 @@ export default function MarsVisualizerView() {
             </div>
 
             {/* Grid de imagenes */}
-            <ImageGrid 
+            <ImageGrid
               imageUrls={photoUrls}
               emptyMessage="Select a camera and click 'Search' to see the images"
             />

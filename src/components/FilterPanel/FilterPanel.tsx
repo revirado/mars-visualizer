@@ -82,7 +82,7 @@ export default function FilterPanel({
                 </div>
 
                 {/* Selector de Página */}
-                <div className={styles.field}>
+                {false && (<div className={styles.field}>
                     <label className={styles.label}>
                         Page
                     </label>
@@ -93,7 +93,7 @@ export default function FilterPanel({
                         onChange={(e) => onPageChange(Number(e.target.value))}
                         className={styles.input}
                     />
-                </div>
+                </div>)}
 
                 {/* Botón de acción */}
                 <div className={styles.field}>
