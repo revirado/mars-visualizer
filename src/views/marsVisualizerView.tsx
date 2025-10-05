@@ -15,10 +15,14 @@ export default function MarsVisualizerView() {
     setSol,
     refresh,
     setPage,
-    camName: camera,
+    camName,
+    setCamName,
+    earthDate,
+    totalPhotos,
+    availableCameras,
   } = useMarsPhotos();
 
-  const photosLength = photoUrls.length
+  const photosLength = photoUrls.length;
 
   return (
     <>
@@ -41,14 +45,32 @@ export default function MarsVisualizerView() {
               }}
               className="ml-2 px-2 py-1 border rounded"
             />
-            
           </label>
+          {earthDate && (
+            <span className="text-sm text-gray-500">
+              Fecha Tierra: {earthDate}
+            </span>
+          )}
           <label>
             Cámara:
-            <select value={camera} disabled className="ml-2 px-2 py-1 border rounded">
-              <option value="FRONT_HAZCAM_LEFT_A">FRONT_HAZCAM_LEFT_A</option>
+            <select
+              value={camName}
+              onChange={e => setCamName?.(e.target.value)}
+              className="ml-2 px-2 py-1 border rounded"
+            >
+              <option value="">Seleccionar cámara</option>
+              {availableCameras.map(cam => (
+                <option key={cam} value={cam}>
+                  {cam}
+                </option>
+              ))}
             </select>
           </label>
+          {totalPhotos !== undefined && (
+            <span className="text-sm text-gray-500">
+              Fotos disponibles: {totalPhotos}
+            </span>
+          )}
           <label>
             Página:
             <input
@@ -61,11 +83,13 @@ export default function MarsVisualizerView() {
           </label>
           <button
             onClick={refresh}
-            className="px-2 py-1 bg-blue-500 text-white rounded"
+            disabled={!camName}
+            className="px-2 py-1 bg-blue-500 text-white rounded disabled:bg-gray-400"
           >
             Refrescar
           </button>
         </section>
+
 
         {loading && <p>Cargando imágenes...</p>}
         {error && <p className="text-red-500">{error}</p>}

@@ -1,7 +1,8 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { getMarsPhotoUrls } from "@/handlers/getMarsPhotoUrls.handler";
 import manifest from "@/assets/data/manifests-perseverance.json";
+import { PhotoManifest, SolManifest } from "@/types/manifest";
 
 interface MarsPhotosContextValue {
     photoUrls: string[];
@@ -11,6 +12,9 @@ interface MarsPhotosContextValue {
     page?: number;
     maxSol: number;
     sol?: number;
+    earthDate?: string;
+    totalPhotos?: number;
+    availableCameras: string[];
     refresh: () => void;
     setSol?: (sol: number) => void;
     setPage?: (page: number | undefined) => void;
@@ -32,14 +36,39 @@ export const MarsPhotosProvider = ({ children }: { children: ReactNode }) => {
     const [photoUrls, setPhotoUrls] = useState<string[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const [availableCameras, setAvailableCameras] = useState<string[]>([]);
+    const [earthDate, setEarthDate] = useState<string>("");
+    const [totalPhotos, setTotalPhotos] = useState<number>(0);
 
     // request params
     const [sol, setSol] = useState<number>(maxSol);
-    const [camName, setCamName] = useState<string>("FRONT_HAZCAM_LEFT_A");
+    const [camName, setCamName] = useState<string>("");
     const [page, setPage] = useState<number | undefined>(undefined);
 
+    // Actualizar cámaras disponibles cuando cambia el sol
+    useEffect(() => {
+        const solManifest = (manifest as PhotoManifest).photo_manifest.photos.find(
+            (photo: SolManifest) => photo.sol === sol
+        );
+
+        if (solManifest) {
+            setAvailableCameras(solManifest.cameras);
+            setEarthDate(solManifest.earth_date);
+            setTotalPhotos(solManifest.total_photos);
+
+            // Si la cámara actual no está disponible, resetearla
+            if (!solManifest.cameras.includes(camName)) {
+                setCamName("");
+            }
+        }
+    }, [sol, camName]);
 
     const fetchPhotos = async () => {
+        if (!camName) {
+            setError("Por favor, selecciona una cámara.");
+            return;
+        }
+
         setLoading(true);
         setError(null);
         try {
@@ -57,10 +86,6 @@ export const MarsPhotosProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
-    /* useEffect(() => {
-        fetchPhotos();
-    }, []); */
-
     return (
         <MarsPhotosContext.Provider value={{
             photoUrls,
@@ -70,6 +95,9 @@ export const MarsPhotosProvider = ({ children }: { children: ReactNode }) => {
             maxSol,
             sol,
             page,
+            earthDate,
+            totalPhotos,
+            availableCameras,
             setSol,
             setPage,
             setCamName,
