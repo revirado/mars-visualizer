@@ -75,6 +75,9 @@ export default function FilterWizard({
                     <span className={currentStep === "camera" ? styles.activeStep : ""}>
                         Select Camera
                     </span>
+                    <span>
+                        SOL: {selectedSol}
+                    </span>
                 </div>
 
                 <button

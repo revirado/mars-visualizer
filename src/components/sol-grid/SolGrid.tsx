@@ -35,7 +35,7 @@ export default function SolGrid({ selectedSol, maxSol, onSolSelect }: SolGridPro
     return (
         <div className={styles.gridContainer}>
             <div className={styles.header}>
-                <h3 className={styles.title}>Select a Sol (Martian Day)</h3>
+                <h3 className={styles.title} >Select a Sol (Martian Day)</h3>
                 <p className={styles.subtitle}>
                     {hoveredSol !== null
                         ? `Sol ${hoveredSol}`
@@ -73,7 +73,7 @@ export default function SolGrid({ selectedSol, maxSol, onSolSelect }: SolGridPro
                 <div className={styles.legend}>
                     <div className={styles.legendItem}>
                         <div className={`${styles.legendColor} ${styles.selected}`}></div>
-                        <span>Seleccionado</span>
+                        <span>Selected</span>
                     </div>
                     <div className={styles.legendItem}>
                         <div className={`${styles.legendColor} ${styles.hovered}`}></div>
@@ -81,7 +81,7 @@ export default function SolGrid({ selectedSol, maxSol, onSolSelect }: SolGridPro
                     </div>
                     <div className={styles.legendItem}>
                         <div className={`${styles.legendColor} ${styles.default}`}></div>
-                        <span>Disponible</span>
+                        <span>Available</span>
                     </div>
                 </div>
             </div>
