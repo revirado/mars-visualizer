@@ -1,9 +1,19 @@
 import { fetchMarsPhotos } from "@/services/services";
-import { MarsPhoto } from "../types/marsTypes";
+import { MarsPhoto } from "@/types/marsTypes";
 
-export async function getMarsPhotoUrls(): Promise<string[]> {
+interface MarsPhotoParams {
+    sol: number;
+    camName: string;
+    pagination?: number;
+}
+
+export async function getMarsPhotoUrls({
+    sol,
+    camName,
+    pagination,
+}: MarsPhotoParams): Promise<string[]> {
     try {
-        const data = await fetchMarsPhotos(600, "FRONT_HAZCAM_LEFT_A", 1);
+        const data = await fetchMarsPhotos(sol, camName, pagination);
         // Extraemos solo las URLs de imagen
         const urls = data.photos.map((photo: MarsPhoto) => photo.img_src);
         return urls;
