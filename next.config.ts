@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
     });
     return config;
   },
+  images: {
+    domains: [
+      "d2pn8kiwq2w21t.cloudfront.net"
+    ]
+  }
 };
 
 export default nextConfig;

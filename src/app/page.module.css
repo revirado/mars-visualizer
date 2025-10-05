@@ -27,11 +27,23 @@
   }
 }
 
+.banner {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
 .main {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
   grid-row-start: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .main ol {
@@ -54,6 +66,15 @@
   padding: 2px 4px;
   border-radius: 4px;
   font-weight: 600;
+}
+
+.main h1 {
+  margin-bottom: 0.25rem; /* Reduce el espacio debajo del título */
+}
+
+.main h2 {
+  margin-top: 0; /* Elimina el espacio encima del subtítulo */
+  margin-bottom: 1rem; /* Opcional: ajusta el espacio debajo si lo necesitas */
 }
 
 .ctas {

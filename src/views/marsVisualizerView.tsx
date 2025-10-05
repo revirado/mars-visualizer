@@ -23,11 +23,32 @@ export default function MarsVisualizerView() {
   } = useMarsPhotos();
 
   const photosLength = photoUrls.length;
+  const banerImageUrl = 'https://d2pn8kiwq2w21t.cloudfront.net/original_images/25045_Perseverance_Mars_Rover_Instrument_Labels-web_TJS8tKe.jpg'
 
   return (
     <>
       <main className={styles.main}>
-        <h1 className="text-2xl font-bold mb-4">📸 Mars Rover Photos</h1>
+
+        {/* Banner Image */}
+        <div className={styles.banner}>
+          <Image
+            src={banerImageUrl}
+            alt="Mars Rover Banner"
+            width={1200}
+            height={200}
+            style={{
+              width: '100%',
+              height: '200px',
+              objectFit: 'cover',
+            }}
+            priority
+          />
+        </div>
+
+        <h1 className="text-2xl font-bold mb-0">Mars Perseverance Rover Photos</h1>
+        <h2 className="mt-0">
+          Nabla Team - v0.0.3 prototype
+        </h2>
 
         <section className="mb-4 flex gap-4 items-center">
           <label>
