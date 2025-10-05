@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     domains: [
-      "d2pn8kiwq2w21t.cloudfront.net"
+      "d2pn8kiwq2w21t.cloudfront.net","mars.nasa.gov","img.icons8.com"
     ]
   }
 };

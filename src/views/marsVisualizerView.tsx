@@ -6,10 +6,10 @@ import styles from "./MarsVisualizerView.module.css";
 
 import LoadingState from "@/components/loading-state/LoadingState";
 import ErrorState from "@/components/error-state/ErrorState";
-import ImageGrid from "@/components/image-grid/ImageGrid";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import FilterWizard from "@/components/FilterWizard/FilterWizard";
+import PhotoViewer from "@/components/photo-viewer/PhotoViewer";
 
 type ViewMode = "filters" | "results";
 
@@ -42,7 +42,7 @@ export default function MarsVisualizerView() {
     setViewMode("filters");
   };
 
-  return (
+return (
     <div className={styles.container}>
       <Header
         title="Mars Perseverance Rover Photos"
@@ -58,7 +58,7 @@ export default function MarsVisualizerView() {
               onClick={() => setViewMode(viewMode === "filters" ? "results" : "filters")}
               className={styles.toggleButton}
             >
-              {viewMode === "filters" ? "📷 Ver Resultados" : "⚙️ Volver a Filtros"}
+              {viewMode === "filters" ? "📷 Check results" : "⚙️ Back to Filters"}
             </button>
           </div>
         )}
@@ -72,7 +72,7 @@ export default function MarsVisualizerView() {
             availableCameras={availableCameras}
             onSolChange={(value) => setSol?.(value)}
             onCamChange={(value) => setCamName?.(value)}
-            onSearch={handleSearch} // Usamos la nueva función que cambia la vista
+            onSearch={handleSearch}
           />
         ) : (
           /* Vista de resultados */
@@ -83,7 +83,7 @@ export default function MarsVisualizerView() {
                 onClick={handleBackToFilters}
                 className={styles.backButton}
               >
-                ← Volver a Filtros
+                ← Back to Filters
               </button>
               
               <div className={styles.resultsInfo}>
@@ -105,9 +105,9 @@ export default function MarsVisualizerView() {
             {loading && <LoadingState />}
             {error && <ErrorState message={error} />}
 
-            {/* Grid de imágenes */}
+            {/* Nuevo PhotoViewer */}
             {!loading && !error && (
-              <ImageGrid
+              <PhotoViewer
                 imageUrls={photoUrls}
                 emptyMessage="Select a camera and click 'Search' to see the images"
               />

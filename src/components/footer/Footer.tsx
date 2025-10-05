@@ -1,9 +1,12 @@
 // src/components/Footer/Footer.tsx
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
+
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <footer className={styles.footer}>
             <div className={styles.content}>
@@ -15,7 +18,7 @@ export default function Footer() {
                         className={styles.primaryLink}
                     >
                         <Image
-                            src="/nasa-logo.svg" // Necesitarás agregar este logo
+                            src="https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg"
                             alt="NASA API"
                             width={20}
                             height={20}
@@ -30,7 +33,7 @@ export default function Footer() {
                         className={styles.secondaryLink}
                     >
                         <Image
-                            src="/github.svg" // Necesitarás agregar este logo
+                            src="https://img.icons8.com/?size=64&id=3tC9EQumUAuq&format=png" 
                             alt="GitHub"
                             width={20}
                             height={20}
@@ -40,9 +43,26 @@ export default function Footer() {
                     </a>
                 </div>
                 <div className={styles.info}>
-                    <p>Datos proporcionados por la NASA Mars Rover Photos API</p>
                     <p className={styles.disclaimer}>
-                        Este es un proyecto de visualización no oficial
+                        Developing by Ariel Lamas ∇ Nabla Team - 2025
+                    </p>
+                </div>
+                <div
+                    className={styles.info}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
+                    <p>
+                        {isHovered
+                            ? "Datos proporcionados por la NASA Mars Rover Photos API"
+                            : "Data provided by NASA Mars Rover Photos API"
+                        }
+                    </p>
+                    <p className={styles.disclaimer}>
+                        {isHovered
+                            ? "Este es un proyecto de visualización no oficial"
+                            : "This is an unofficial visualization project"
+                        }
                     </p>
                 </div>
             </div>
