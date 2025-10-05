@@ -1,8 +1,16 @@
+// src/views/marsVisualizerView.tsx
 "use client";
 import React from "react";
 import { useMarsPhotos } from "@/context/MarsPhotosContext";
-import styles from "../app/page.module.css";
-import Image from "next/image";
+import styles from "./MarsVisualizerView.module.css";
+
+import FilterPanel from "@/components/FilterPanel/FilterPanel";
+import LoadingState from "@/components/loading-state/LoadingState";
+import ErrorState from "@/components/error-state/ErrorState";
+import ImageGrid from "@/components/image-grid/ImageGrid";
+import Footer from "@/components/footer/Footer";
+import Header from "@/components/header/Header";
+
 
 export default function MarsVisualizerView() {
   const {
@@ -22,138 +30,63 @@ export default function MarsVisualizerView() {
     availableCameras,
   } = useMarsPhotos();
 
-  const photosLength = photoUrls.length;
-  const banerImageUrl = 'https://d2pn8kiwq2w21t.cloudfront.net/original_images/25045_Perseverance_Mars_Rover_Instrument_Labels-web_TJS8tKe.jpg'
+  const bannerImageUrl = 'https://d2pn8kiwq2w21t.cloudfront.net/original_images/25045_Perseverance_Mars_Rover_Instrument_Labels-web_TJS8tKe.jpg';
 
   return (
-    <>
-      <main className={styles.main}>
+    <div className={styles.container}>
+      <Header 
+        title="Mars Perseverance Rover Photos"
+        subtitle="Nabla Team - v0.1.0 prototype"
+        bannerImage={bannerImageUrl}
+      />
+      
+      <main >
+        {/* Panel de Filtros */}
+        <FilterPanel
+          sol={sol}
+          maxSol={maxSol}
+          earthDate={earthDate}
+          camName={camName}
+          page={page}
+          totalPhotos={totalPhotos}
+          availableCameras={availableCameras}
+          onSolChange={(value) => setSol?.(value)}
+          onCamChange={(value) => setCamName?.(value)}
+          onPageChange={(value) => setPage?.(value)}
+          onRefresh={refresh}
+        />
 
-        {/* Banner Image */}
-        <div className={styles.banner}>
-          <Image
-            src={banerImageUrl}
-            alt="Mars Rover Banner"
-            width={1200}
-            height={200}
-            style={{
-              width: '100%',
-              height: '200px',
-              objectFit: 'cover',
-            }}
-            priority
-          />
-        </div>
-
-        <h1 className="text-2xl font-bold mb-0">Mars Perseverance Rover Photos</h1>
-        <h2 className="mt-0">
-          Nabla Team - v0.0.3 prototype
-        </h2>
-
-        <section className="mb-4 flex gap-4 items-center">
-          <label>
-            Sol: (Max: {maxSol})
-            <input
-              type="number"
-              min={0}
-              max={maxSol}
-              value={sol}
-              onChange={e => {
-                const value = Number(e.target.value);
-                if (value >= 0 && value <= maxSol) {
-                  setSol?.(value);
+        {/* estados de carga y error */}
+        {loading && <LoadingState />}
+        {error && <ErrorState message={error} />}
+        
+        {/* Resultados */}
+        {!loading && !error && (
+          <div className={styles.resultsSection}>
+            <div className={styles.resultsHeader}>
+              <h2 className={styles.resultsTitle}>
+                {photoUrls.length > 0 
+                  ? `${photoUrls.length} picture(s) found`
+                  : "No pictures found"
                 }
-              }}
-              className="ml-2 px-2 py-1 border rounded"
+              </h2>
+              {totalPhotos !== undefined && photoUrls.length > 0 && (
+                <span className={styles.totalPhotos}>
+                  {totalPhotos.toLocaleString()} photos available in total
+                </span>
+              )}
+            </div>
+
+            {/* Grid de imagenes */}
+            <ImageGrid 
+              imageUrls={photoUrls}
+              emptyMessage="Select a camera and click 'Search' to see the images"
             />
-          </label>
-          {earthDate && (
-            <span className="text-sm text-gray-500">
-              Fecha Tierra: {earthDate}
-            </span>
-          )}
-          <label>
-            Cámara:
-            <select
-              value={camName}
-              onChange={e => setCamName?.(e.target.value)}
-              className="ml-2 px-2 py-1 border rounded"
-            >
-              <option value="">Seleccionar cámara</option>
-              {availableCameras.map(cam => (
-                <option key={cam} value={cam}>
-                  {cam}
-                </option>
-              ))}
-            </select>
-          </label>
-          {totalPhotos !== undefined && (
-            <span className="text-sm text-gray-500">
-              Fotos disponibles: {totalPhotos}
-            </span>
-          )}
-          <label>
-            Página:
-            <input
-              type="number"
-              min={1}
-              value={page}
-              onChange={e => setPage?.(Number(e.target.value))}
-              className="ml-2 px-2 py-1 border rounded"
-            />
-          </label>
-          <button
-            onClick={refresh}
-            disabled={!camName}
-            className="px-2 py-1 bg-blue-500 text-white rounded disabled:bg-gray-400"
-          >
-            Refrescar
-          </button>
-        </section>
-
-
-        {loading && <p>Cargando imágenes...</p>}
-        {error && <p className="text-red-500">{error}</p>}
-        {!loading && photosLength === 0 && <p>No se encontraron imágenes.</p>}
-
-        Result: {photosLength}
-        <ul className="space-y-2">
-
-          {photoUrls.map((url, index) => (
-            <li key={index} className="text-blue-500 break-words">
-              {url}
-            </li>
-          ))}
-        </ul>
-
+          </div>
+        )}
       </main>
-      <footer className={styles.footer}>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://api.nasa.gov/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            https://api.nasa.gov/
-          </a>
-          <a
-            href="https://github.com/corincerami/mars-photo-api"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            API Doc (Github Repo)
-          </a>
-        </div>
-      </footer>
-    </>
+
+      <Footer />
+    </div>
   );
 }

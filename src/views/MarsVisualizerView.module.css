@@ -1,0 +1,53 @@
+/* src/views/MarsVisualizerView.module.css */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.resultsSection {
+  margin-top: 2rem;
+}
+
+.resultsHeader {
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.resultsTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.totalPhotos {
+  font-size: 0.875rem;
+  color: #6b7280;
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem;
+  }
+  
+  .resultsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

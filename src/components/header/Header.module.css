@@ -1,0 +1,66 @@
+/* src/components/Header/Header.module.css */
+.header {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.bannerImage {
+  object-fit: cover;
+}
+
+.bannerOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    height: 200px;
+  }
+  
+  .content {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+}

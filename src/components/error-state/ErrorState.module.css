@@ -1,0 +1,26 @@
+/* src/components/ErrorState/ErrorState.module.css */
+.error {
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  color: #dc2626;
+}
+
+.errorIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.errorTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.errorMessage {
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
