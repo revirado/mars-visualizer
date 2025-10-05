@@ -1,6 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { getMarsPhotoUrls } from "@/handlers/getMarsPhotoUrls.handler";
+import manifest from "@/assets/data/manifests-perseverance.json";
 
 interface MarsPhotosContextValue {
     photoUrls: string[];
@@ -8,6 +9,7 @@ interface MarsPhotosContextValue {
     loading: boolean;
     error: string | null;
     page?: number;
+    maxSol: number;
     sol?: number;
     refresh: () => void;
     setSol?: (sol: number) => void;
@@ -26,12 +28,13 @@ export const useMarsPhotos = () => {
 };
 
 export const MarsPhotosProvider = ({ children }: { children: ReactNode }) => {
+    const maxSol = manifest.photo_manifest.max_sol;
     const [photoUrls, setPhotoUrls] = useState<string[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
     // request params
-    const [sol, setSol] = useState<number>(1000);
+    const [sol, setSol] = useState<number>(maxSol);
     const [camName, setCamName] = useState<string>("FRONT_HAZCAM_LEFT_A");
     const [page, setPage] = useState<number | undefined>(undefined);
 
@@ -48,6 +51,7 @@ export const MarsPhotosProvider = ({ children }: { children: ReactNode }) => {
             setPhotoUrls(urls);
         } catch (err) {
             setError("Error al obtener las fotos.");
+            console.log(err);
         } finally {
             setLoading(false);
         }
@@ -63,6 +67,7 @@ export const MarsPhotosProvider = ({ children }: { children: ReactNode }) => {
             loading,
             camName,
             error,
+            maxSol,
             sol,
             page,
             setSol,

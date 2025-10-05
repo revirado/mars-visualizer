@@ -8,14 +8,17 @@ export default function MarsVisualizerView() {
   const {
     photoUrls,
     loading,
+    maxSol,
     error,
-    refresh,
     sol,
-    setSol,
     page,
+    setSol,
+    refresh,
     setPage,
     camName: camera,
   } = useMarsPhotos();
+
+  const photosLength = photoUrls.length
 
   return (
     <>
@@ -24,14 +27,21 @@ export default function MarsVisualizerView() {
 
         <section className="mb-4 flex gap-4 items-center">
           <label>
-            Sol:
+            Sol: (Max: {maxSol})
             <input
               type="number"
               min={0}
+              max={maxSol}
               value={sol}
-              onChange={e => setSol?.(Number(e.target.value))}
+              onChange={e => {
+                const value = Number(e.target.value);
+                if (value >= 0 && value <= maxSol) {
+                  setSol?.(value);
+                }
+              }}
               className="ml-2 px-2 py-1 border rounded"
             />
+            
           </label>
           <label>
             Cámara:
@@ -59,14 +69,18 @@ export default function MarsVisualizerView() {
 
         {loading && <p>Cargando imágenes...</p>}
         {error && <p className="text-red-500">{error}</p>}
-        {!loading && photoUrls.length === 0 && <p>No se encontraron imágenes.</p>}
+        {!loading && photosLength === 0 && <p>No se encontraron imágenes.</p>}
+
+        Result: {photosLength}
         <ul className="space-y-2">
+
           {photoUrls.map((url, index) => (
             <li key={index} className="text-blue-500 break-words">
               {url}
             </li>
           ))}
         </ul>
+
       </main>
       <footer className={styles.footer}>
         <div className={styles.ctas}>
