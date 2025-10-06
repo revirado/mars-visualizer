@@ -46,7 +46,7 @@ return (
     <div className={styles.container}>
       <Header
         title="Mars Perseverance: Through the Rover's Eyes"
-        subtitle="Browse Martian surface photos by mission day and camera - Nabla Team - v0.1.2 prototype"
+        subtitle="Browse Martian surface photos by mission day and camera - Nabla Team - v0.1.3 prototype"
         bannerImage={bannerImageUrl}
       />
 
@@ -109,7 +109,7 @@ return (
             {!loading && !error && (
               <PhotoViewer
                 imageUrls={photoUrls}
-                emptyMessage="Select a camera and click 'Search' to see the images"
+                emptyMessage="Back to filters to see the images"
               />
             )}
           </div>

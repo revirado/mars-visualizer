@@ -93,6 +93,37 @@
   font-weight: 600;
 }
 
+.solCell {
+  /* Cambiar de button a div styling */
+  width: 20px;
+  height: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: #f3f4f6; /* Color por defecto */
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5rem;
+  font-weight: 500;
+  /* Remover estilos de button */
+  border: none;
+  outline: none;
+}
+
+/* Leyenda del mapa de calor */
+.legendGradient {
+  width: 120px;
+  height: 16px;
+  background: linear-gradient(90deg, 
+    hsl(217, 71%, 70%),  /* Más claro - pocas fotos */
+    hsl(217, 71%, 30%)   /* Más oscuro - muchas fotos */
+  );
+  border-radius: 3px;
+  border: 1px solid #e5e7eb;
+}
+
 .footer {
   border-top: 1px solid #e5e7eb;
   padding-top: 1rem;

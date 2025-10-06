@@ -98,10 +98,10 @@ export const MarsPhotosProvider = ({ children }: { children: ReactNode }) => {
             earthDate,
             totalPhotos,
             availableCameras,
-            setSol,
-            setPage,
-            setCamName,
             refresh: fetchPhotos,
+            setCamName,
+            setPage,
+            setSol,
         }}>
             {children}
         </MarsPhotosContext.Provider>

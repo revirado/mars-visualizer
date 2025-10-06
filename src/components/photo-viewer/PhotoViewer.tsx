@@ -73,7 +73,7 @@ export default function PhotoViewer({ imageUrls, emptyMessage }: PhotoViewerProp
     if (imageUrls.length === 0) {
         return (
             <div className={styles.emptyState}>
-                <div className={styles.emptyIcon}>📷</div>
+                <div className={styles.emptyIcon}>No Images available</div>
                 <p className={styles.emptyMessage}>
                     {emptyMessage || "No images available"}
                 </p>

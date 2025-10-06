@@ -63,11 +63,11 @@ export default function CameraGrid({
     return (
         <div className={styles.gridContainer}>
             <div className={styles.header}>
-                <h3 className={styles.title}>Selecciona una cámara</h3>
+                <h3 className={styles.title}>Select a camera</h3>
                 <p className={styles.subtitle}>
                     {selectedCamera
                         ? `${getCameraDisplayName(selectedCamera)} seleccionada`
-                        : `${availableCameras.length} cámaras disponibles`
+                        : `${availableCameras.length} cameras available`
                     }
                 </p>
             </div>
@@ -117,7 +117,7 @@ export default function CameraGrid({
             {selectedCamera && (
                 <div className={styles.selectedInfo}>
                     <div className={styles.selectedCamera}>
-                        <strong>Cámara seleccionada:</strong> {getCameraDisplayName(selectedCamera)}
+                        <strong>Selected Camera:</strong> {getCameraDisplayName(selectedCamera)}
                     </div>
                 </div>
             )}
