@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "./FilterWizard.module.css";
 import CameraGrid from "../cameraGrid/CameraGrid";
 import SolGrid from "../sol-grid/SolGrid";
+import { useMarsPhotos } from "@/context/MarsPhotosContext";
 
 interface FilterWizardProps {
     sol: number;
@@ -26,6 +27,8 @@ export default function FilterWizard({
     onCamChange,
     onSearch,
 }: FilterWizardProps) {
+
+    const {earthDate} = useMarsPhotos();
     const [currentStep, setCurrentStep] = useState<WizardStep>("sol");
     const [selectedSol, setSelectedSol] = useState<number>(sol);
 
@@ -76,8 +79,9 @@ export default function FilterWizard({
                         Select Camera
                     </span>
                     <span>
-                        SOL: {selectedSol}
+                        SOL: {selectedSol} / {maxSol}
                     </span>
+                    <span>  {earthDate ? ` ${earthDate}` : ""}</span>
                 </div>
 
                 <button

@@ -61,6 +61,7 @@ export default function SolGrid({ selectedSol, maxSol, onSolSelect }: SolGridPro
 
     return (
         <div className={styles.gridContainer}>
+            {/* Header del componente */}
             <div className={styles.header}>
                 <h3 className={styles.title}>Select a Mission Day (Sol)</h3>
                 <p className={styles.subtitle}>

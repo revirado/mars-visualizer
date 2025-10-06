@@ -60,6 +60,11 @@ export const MarsPhotosProvider = ({ children }: { children: ReactNode }) => {
             if (!solManifest.cameras.includes(camName)) {
                 setCamName("");
             }
+        }else{
+            setAvailableCameras([]);
+            setEarthDate("");
+            setTotalPhotos(0);
+            setCamName("");
         }
     }, [sol, camName]);
 
