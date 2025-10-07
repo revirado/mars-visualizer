@@ -100,6 +100,7 @@ export default function FilterWizard({
                         selectedSol={selectedSol}
                         maxSol={maxSol}
                         onSolSelect={handleSolSelect}
+                        onDoubleClick={() => setCurrentStep("camera")}
                     />
                 )}
 

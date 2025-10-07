@@ -7,9 +7,15 @@ interface SolGridProps {
     selectedSol: number;
     maxSol: number;
     onSolSelect: (sol: number) => void;
+    onDoubleClick: () => void;
 }
 
-export default function SolGrid({ selectedSol, maxSol, onSolSelect }: SolGridProps) {
+export default function SolGrid({
+    maxSol,
+    selectedSol,
+    onSolSelect,
+    onDoubleClick
+}: SolGridProps) {
     const [hoveredSol, setHoveredSol] = useState<number | null>(null);
 
     // Calcular máximo de fotos una sola vez
@@ -84,6 +90,7 @@ export default function SolGrid({ selectedSol, maxSol, onSolSelect }: SolGridPro
                                 const intensity = getSolColorIntensity(sol);
 
                                 return (
+                                    // sol square component
                                     <div
                                         key={sol}
                                         className={`${styles.solCell} ${styles[status]}`}
@@ -99,6 +106,7 @@ export default function SolGrid({ selectedSol, maxSol, onSolSelect }: SolGridPro
                                                 ) // Azul: más oscuro = más fotos
                                                 : undefined,
                                         }}
+                                        onDoubleClick={onDoubleClick}
                                         onClick={() => handleSolClick(sol)}
                                         onMouseEnter={() => setHoveredSol(sol)}
                                         onMouseLeave={() => setHoveredSol(null)}
