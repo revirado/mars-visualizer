@@ -6,12 +6,14 @@ interface CameraGridProps {
     selectedCamera: string;
     availableCameras: string[];
     onCameraSelect: (camera: string) => void;
+    onDoubleClick: () => void;
 }
 
 export default function CameraGrid({
     selectedCamera,
     availableCameras,
     onCameraSelect,
+    onDoubleClick
 }: CameraGridProps) {
     // Dividir las cámaras en 2 filas
     const midPoint = Math.ceil(availableCameras.length / 2);
@@ -74,13 +76,16 @@ export default function CameraGrid({
 
             <div className={styles.grid}>
                 {/* Primera fila */}
-                <div className={styles.row}>
+                <div className={styles.row} >
                     {firstRow.map((camera) => (
                         <button
                             key={camera}
-                            className={`${styles.cameraCard} ${camera === selectedCamera ? styles.selected : ""
-                                }`}
+                            className={`
+                                    ${styles.cameraCard} 
+                                        ${camera === selectedCamera ? styles.selected : ""}
+                                `}
                             onClick={() => onCameraSelect(camera)}
+                            onDoubleClick={onDoubleClick}
                         >
                             <div className={styles.cameraIcon}>
                                 {getCameraAbbreviation(camera)}
@@ -94,13 +99,14 @@ export default function CameraGrid({
 
                 {/* Segunda fila (si hay suficientes cámaras) */}
                 {secondRow.length > 0 && (
-                    <div className={styles.row}>
+                    <div className={styles.row} >
                         {secondRow.map((camera) => (
                             <button
                                 key={camera}
                                 className={`${styles.cameraCard} ${camera === selectedCamera ? styles.selected : ""
                                     }`}
                                 onClick={() => onCameraSelect(camera)}
+                                onDoubleClick={onDoubleClick}
                             >
                                 <div className={styles.cameraIcon}>
                                     {getCameraAbbreviation(camera)}

@@ -109,6 +109,7 @@ export default function FilterWizard({
                         selectedCamera={camName}
                         availableCameras={availableCameras}
                         onCameraSelect={handleCameraSelect}
+                        onDoubleClick={() => onSearch()}
                     />
                 )}
             </div>
