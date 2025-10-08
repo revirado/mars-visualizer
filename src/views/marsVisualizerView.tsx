@@ -44,6 +44,10 @@ export default function MarsVisualizerView() {
     setFilterWizardInitialStep("camera");
   };
 
+  const handleGoToResults = () => {
+    setViewMode("results");
+  };
+
   return (
     <div className={styles.container}>
       <Header
@@ -57,7 +61,7 @@ export default function MarsVisualizerView() {
         {photoUrls.length > 0 && (
           <div className={styles.viewToggle}>
             <button
-              onClick={() => setViewMode(viewMode === "filters" ? "results" : "filters")}
+              onClick={() => viewMode === "filters" ? handleGoToResults() : handleBackToFilters()}
               className={styles.toggleButton}
             >
               {viewMode === "filters" ? "Check last results" : "← Back to Filters"}
