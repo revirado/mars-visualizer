@@ -30,7 +30,7 @@ export default function FilterWizard({
     initialStep,
 }: FilterWizardProps) {
 
-    const {earthDate} = useMarsPhotos();
+    const { earthDate } = useMarsPhotos();
     const [currentStep, setCurrentStep] = useState<WizardStep>(initialStep || "sol");
     const [selectedSol, setSelectedSol] = useState<number>(sol);
 
@@ -73,16 +73,18 @@ export default function FilterWizard({
                     <ArrowIcon direction="left" />
                 </button>
 
-                <div className={styles.stepIndicator}>
+                {/*<div className={styles.stepIndicator}>
                     <span className={currentStep === "sol" ? styles.activeStep : ""}>
                         Select Sol
                     </span>
                     <span className={currentStep === "camera" ? styles.activeStep : ""}>
                         Select Camera
                     </span>
-                    <span>
+                </div> */}
+                <div>
+                    <div className={styles.title}>
                         SOL: {selectedSol} / {maxSol}
-                    </span>
+                    </div>
                     <span>  {earthDate ? ` ${earthDate}` : ""}</span>
                 </div>
 
