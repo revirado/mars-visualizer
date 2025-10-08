@@ -14,6 +14,7 @@ interface FilterWizardProps {
     onSolChange: (sol: number) => void;
     onCamChange: (camera: string) => void;
     onSearch: () => void;
+    initialStep?: WizardStep;
 }
 
 type WizardStep = "sol" | "camera";
@@ -26,10 +27,11 @@ export default function FilterWizard({
     onSolChange,
     onCamChange,
     onSearch,
+    initialStep,
 }: FilterWizardProps) {
 
     const {earthDate} = useMarsPhotos();
-    const [currentStep, setCurrentStep] = useState<WizardStep>("sol");
+    const [currentStep, setCurrentStep] = useState<WizardStep>(initialStep || "sol");
     const [selectedSol, setSelectedSol] = useState<number>(sol);
 
     const handleSolSelect = (newSol: number) => {

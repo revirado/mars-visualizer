@@ -29,6 +29,7 @@ export default function MarsVisualizerView() {
   } = useMarsPhotos();
 
   const [viewMode, setViewMode] = useState<ViewMode>("filters");
+  const [FilterWizardInitialStep, setFilterWizardInitialStep] = useState<"sol" | "camera">("sol");
   const bannerImageUrl = 'https://d2pn8kiwq2w21t.cloudfront.net/original_images/25045_Perseverance_Mars_Rover_Instrument_Labels-web_TJS8tKe.jpg';
 
   // Función para manejar la búsqueda que cambia a la vista de resultados
@@ -40,9 +41,10 @@ export default function MarsVisualizerView() {
   // Función para volver a los filtros
   const handleBackToFilters = () => {
     setViewMode("filters");
+    setFilterWizardInitialStep("camera");
   };
 
-return (
+  return (
     <div className={styles.container}>
       <Header
         title="Mars Perseverance: Through the Rover's Eyes"
@@ -58,7 +60,7 @@ return (
               onClick={() => setViewMode(viewMode === "filters" ? "results" : "filters")}
               className={styles.toggleButton}
             >
-              {viewMode === "filters" ? "📷 Check results" : "⚙️ Back to Filters"}
+              {viewMode === "filters" ? "Check last results" : "← Back to Filters"}
             </button>
           </div>
         )}
@@ -73,19 +75,22 @@ return (
             onSolChange={(value) => setSol?.(value)}
             onCamChange={(value) => setCamName?.(value)}
             onSearch={handleSearch}
+            initialStep={FilterWizardInitialStep}
           />
         ) : (
           /* Vista de resultados */
           <div className={styles.resultsView}>
-            {/* Botón para volver a filtros */}
             <div className={styles.resultsHeader}>
-              <button
+              
+              {/* Botón para volver a filtros */}
+              {/* <button
                 onClick={handleBackToFilters}
                 className={styles.backButton}
               >
                 ← Back to Filters
-              </button>
-              
+              </button> */}
+
+              {/* disponibilidad de fotos */}
               <div className={styles.resultsInfo}>
                 <h2 className={styles.resultsTitle}>
                   {photoUrls.length > 0
