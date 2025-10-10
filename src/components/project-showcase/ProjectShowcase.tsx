@@ -16,7 +16,8 @@ const demoPhotos = [
     "https://mars.nasa.gov/mars2020-raw-images/pub/ods/surface/sol/00349/ids/edr/browse/zcam/ZR0_0349_0697924880_568EBY_N0092982ZCAM08380_1100LMJ01_1200.jpg",
     "https://mars.nasa.gov/mars2020-raw-images/pub/ods/surface/sol/01461/ids/edr/browse/ncam/NLF_1461_0796646546_300ECM_N0710120NCAM02461_07_195J01_1200.jpg",
     "https://mars.nasa.gov/mars2020-raw-images/pub/ods/surface/sol/00349/ids/edr/browse/zcam/ZR0_0349_0697920032_239EBY_N0092982ZCAM03317_1100LMJ01_1200.jpg",
-    
+    "https://mars.nasa.gov/mars2020-raw-images/pub/ods/surface/sol/00472/ids/edr/browse/zcam/ZR0_0472_0708840117_193ECM_N0260756ZCAM03023_048085J01_1200.jpg",
+
 ];
 
 export default function ProjectShowcase({ mode, onBack }: ProjectShowcaseProps) {
@@ -67,7 +68,7 @@ export default function ProjectShowcase({ mode, onBack }: ProjectShowcaseProps) 
                     </div>
 
                     {/* Demos rápidos */}
-                    {/* <div className={styles.quickDemos}>
+                    <div className={styles.quickDemos}>
                         <h4>Feature Previews</h4>
                         <div className={styles.demoGrid}>
                             <button
@@ -79,53 +80,104 @@ export default function ProjectShowcase({ mode, onBack }: ProjectShowcaseProps) 
                                 <p>Interactive image browser</p>
                             </button>
 
-                            <button
+                            {/* <button
                                 className={styles.demoCard}
                                 onClick={() => setActiveDemo("Sol Timeline")}
                             >
                                 <div className={styles.demoIcon}>🗓️</div>
                                 <h5>Sol Timeline</h5>
                                 <p>Mission day navigation</p>
-                            </button>
+                            </button> */}
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         );
     };
 
-    const renderAbout = () => (
-        <div className={styles.aboutContent}>
-            <h2>📚 Project Context</h2>
-
-            <div className={styles.contextNote}>
-                <p>
-                    <strong>This project was built for NASA Space Apps Challenge 2025</strong>
-                </p>
-                <p>
-                    While the original Mars Photo API is now retired, this prototype demonstrates
-                    how modern web technologies can create engaging interfaces for space exploration data.
-                </p>
-            </div>
-
-            {/* REUTILIZAMOS componentes existentes para mostrar capacidades */}
-            <div className={styles.featureShowcase}>
-                <h3>Built Components</h3>
-                <div className={styles.featureList}>
-                    <div className={styles.featureItem}>
-                        <strong>FilterWizard</strong> - Multi-step mission day and camera selection
-                    </div>
-                    <div className={styles.featureItem}>
-                        <strong>PhotoViewer</strong> - Interactive image browser with carousel
-                    </div>
-                    <div className={styles.featureItem}>
-                        <strong>SolGrid</strong> - Heat map visualization of mission days
+    /*     const renderAbout = () => (
+            <div className={styles.aboutContent}>
+                <h2>📚 Project Context</h2>
+    
+                <div className={styles.contextNote}>
+                    <p>
+                        <strong>This project was built for NASA Space Apps Challenge 2025</strong>
+                    </p>
+                    <p>
+                        While the original Mars Photo API is now retired, this prototype demonstrates
+                        how modern web technologies can create engaging interfaces for space exploration data.
+                    </p>
+                </div>
+    
+                
+                <div className={styles.featureShowcase}>
+                    <h3>Built Components</h3>
+                    <div className={styles.featureList}>
+                        <div className={styles.featureItem}>
+                            <strong>FilterWizard</strong> - Multi-step mission day and camera selection
+                        </div>
+                        <div className={styles.featureItem}>
+                            <strong>PhotoViewer</strong> - Interactive image browser with carousel
+                        </div>
+                        <div className={styles.featureItem}>
+                            <strong>SolGrid</strong> - Heat map visualization of mission days
+                        </div>
                     </div>
                 </div>
             </div>
+        ); */
+
+    const renderAbout = () => (
+        <div className={styles.aboutContent}>
+            <h2>📚 Project Context & Mission</h2>
+
+            <div className={styles.infoSection}>
+                <h3>The Original Mars Photo API</h3>
+                <div className={styles.quoteCard}>
+                    <blockquote>
+                        ´´I built this API as a student project back in 2014 and then rebuilt it in 2015.
+                        It then became a part of NASA´s Open Data Portal in the fall of 2015.
+                        I´ve maintained this API for the last 10 years by myself, but I no longer have
+                        the time to properly maintain it.´´
+                    </blockquote>
+                    <cite>— Chris Cerami, Maintainer (2014-2025)</cite>
+                </div>
+
+                {/* <div className={styles.factsGrid}>
+                    <div className={styles.factItem}>
+                        <strong>10 Years</strong>
+                        <span>Of Service</span>
+                    </div>
+                    <div className={styles.factItem}>
+                        <strong>NASA Open Data</strong>
+                        <span>Portal Integration</span>
+                    </div>
+                    <div className={styles.factItem}>
+                        <strong>Student Project</strong>
+                        <span>Origins</span>
+                    </div>
+                </div> */}
+            </div>
+
+            <div className={styles.infoSection}>
+                <h3>Our Educational Mission</h3>
+                <p>
+                    This demonstration preserves the vision of Mars exploration through rover imagery.
+                    While the original API is retired, we showcase how such tools can empower scientific
+                    discovery and public engagement with space exploration.
+                </p>
+
+                <a
+                    href="https://github.com/corincerami/mars-photo-api"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.repoLink}
+                >
+                    🔗 View Archived Repository
+                </a>
+            </div>
         </div>
     );
-
     const renderTech = () => (
         <div className={styles.techContent}>
             <h2>🔧 Built With</h2>
