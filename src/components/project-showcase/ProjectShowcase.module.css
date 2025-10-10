@@ -3,6 +3,243 @@
   margin: 0 auto;
 }
 
+.showcaseHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.navBack {
+  background: #6b7280;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.showcase h2 {
+  margin: 0;
+  color: #1f2937;
+}
+
+/* Demo Styles */
+.liveDemo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.componentDemo {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.componentDemo h4 {
+  margin: 0 0 1rem 0;
+  color: #374151;
+}
+
+.quickDemos {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.demoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.demoCard {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.demoCard:hover {
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+}
+
+.demoIcon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.demoCard h5 {
+  margin: 0 0 0.5rem 0;
+  color: #1f2937;
+}
+
+.demoCard p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Interactive Demo */
+.interactiveDemo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.backButton {
+  align-self: flex-start;
+  background: #6b7280;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.demoHeader {
+  text-align: center;
+}
+
+.demoHeader h3 {
+  margin: 0 0 0.5rem 0;
+  color: #1f2937;
+}
+
+.demoHeader p {
+  margin: 0;
+  color: #6b7280;
+}
+
+/* About Styles */
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contextNote {
+    color:  #64748b;
+
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.contextNote p {
+  margin: 0 0 1rem 0;
+}
+
+.contextNote p:last-child {
+  margin-bottom: 0;
+}
+
+.featureShowcase {
+ color:  #64748b;
+
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.featureItem {
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 6px;
+  border-left: 4px solid #3b82f6;
+}
+
+/* Tech Styles */
+.techContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.techStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.techItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.techItem strong {
+  color: #1f2937;
+}
+
+.techItem span {
+  color: #6b7280;
+}
+
+.componentShowcase {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.liveComponent {
+  margin-top: 1rem;
+}
+
+.liveComponent h4 {
+  margin: 0 0 1rem 0;
+  color: #374151;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .showcaseHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .techItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .demoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/*        ------------------------------------------------------------------------- */
+
+
+.showcase {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 /* Common Styles */
 .showcase h2 {
   font-size: 2rem;

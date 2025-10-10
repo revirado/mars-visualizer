@@ -5,6 +5,7 @@ import styles from "./MarsVisualizerView.module.css";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import ProjectShowcase from "@/components/project-showcase/ProjectShowcase";
+import NotificationBanner from "@/components/notification/notificationBanner";
 
 
 type ViewMode = "home" | "demo" | "about" | "tech";
@@ -26,16 +27,7 @@ export default function MarsVisualizerView() {
         return (
           <div className={styles.landingContent}>
             {/* Banner de notificación importante */}
-            <div className={styles.notificationBanner}>
-              <div className={styles.notificationIcon}>⚠️</div>
-              <div className={styles.notificationContent}>
-                <h3>Educational Demo - API Service Retired</h3>
-                <p>
-                  The original Mars Photo API is no longer maintained. 
-                  This prototype showcases the projects potential for Mars exploration.
-                </p>
-              </div>
-            </div>
+           <NotificationBanner/>
 
             {/* Call-to-action buttons */}
             <div className={styles.ctaSection}>
