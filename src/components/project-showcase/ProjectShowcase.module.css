@@ -1,0 +1,323 @@
+.showcase {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Common Styles */
+.showcase h2 {
+  font-size: 2rem;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.showcase h3 {
+  font-size: 1.5rem;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.showcase h4 {
+  font-size: 1.125rem;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+/* Demo Styles */
+.demoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tourSelector {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.tourGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.tourCard {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tourCard:hover {
+  border-color: #3b82f6;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+}
+
+.tourIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.tourCard h4 {
+  margin: 0 0 0.5rem 0;
+  color: #1e40af;
+}
+
+.tourCard p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.demoNote {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+.demoNote p {
+  margin: 0;
+  color: #0369a1;
+  font-size: 0.875rem;
+}
+
+/* About Styles */
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.infoSection {
+  color:  #64748b;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.quoteCard {
+  background: #f8fafc;
+  border-left: 4px solid #3b82f6;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.quoteCard blockquote {
+  margin: 0 0 1rem 0;
+  font-style: italic;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.quoteCard cite {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.factsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.factItem {
+  background: #3b82f6;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.factItem strong {
+  font-size: 1.25rem;
+}
+
+.factItem span {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.repoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #1f2937;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+  margin-top: 1rem;
+}
+
+.repoLink:hover {
+  background: #374151;
+  transform: translateY(-1px);
+}
+
+/* Tech Styles */
+.techContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.architecture {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.archDiagram {
+  margin-top: 1.5rem;
+}
+
+.archRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.archNode {
+  color:  #64748b;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+  min-width: 120px;
+}
+
+.nodeIcon {
+  font-size: 1.5rem;
+}
+
+.archArrow {
+  font-size: 1.5rem;
+  color: #6b7280;
+  font-weight: bold;
+}
+
+.archFlow {
+  color:  #64748b;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.flowColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flowNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f0f9ff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #bae6fd;
+  width: 100%;
+  text-align: center;
+}
+
+.flowIcon {
+  font-size: 1.25rem;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.techColumn {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.featureList,
+.techList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureList li,
+.techList li {
+  padding: 0.5rem 0;
+  color: #4b5563;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.featureList li:last-child,
+.techList li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .showcase h2 {
+    font-size: 1.5rem;
+  }
+  
+  .tourGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .archRow {
+    flex-direction: column;
+  }
+  
+  .archArrow {
+    transform: rotate(90deg);
+  }
+  
+  .archFlow {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .techGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .factsGrid {
+    grid-template-columns: 1fr;
+  }
+}

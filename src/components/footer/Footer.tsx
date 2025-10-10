@@ -19,7 +19,7 @@ export default function Footer() {
                     >
                         <Image
                             src="https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg"
-                            alt="NASA API"
+                            alt="NASA - Mars Photo API (Archived 2014-2025)"
                             width={20}
                             height={20}
                             className={styles.logo}

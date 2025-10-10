@@ -1,51 +1,81 @@
-// src/views/marsVisualizerView.tsx
 "use client";
 import React, { useState } from "react";
-import { useMarsPhotos } from "@/context/MarsPhotosContext";
 import styles from "./MarsVisualizerView.module.css";
 
-import LoadingState from "@/components/loading-state/LoadingState";
-import ErrorState from "@/components/error-state/ErrorState";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
-import FilterWizard from "@/components/FilterWizard/FilterWizard";
-import PhotoViewer from "@/components/photo-viewer/PhotoViewer";
+import ProjectShowcase from "@/components/project-showcase/ProjectShowcase";
 
-type ViewMode = "filters" | "results";
+
+type ViewMode = "home" | "demo" | "about" | "tech";
 
 export default function MarsVisualizerView() {
-  const {
-    photoUrls,
-    loading,
-    maxSol,
-    error,
-    sol,
-    setSol,
-    refresh,
-    camName,
-    setCamName,
-    totalPhotos,
-    availableCameras,
-  } = useMarsPhotos();
+  const [viewMode, setViewMode] = useState<ViewMode>("home");
 
-  const [viewMode, setViewMode] = useState<ViewMode>("filters");
-  const [FilterWizardInitialStep, setFilterWizardInitialStep] = useState<"sol" | "camera">("sol");
   const bannerImageUrl = 'https://d2pn8kiwq2w21t.cloudfront.net/original_images/25045_Perseverance_Mars_Rover_Instrument_Labels-web_TJS8tKe.jpg';
 
-  // Función para manejar la búsqueda que cambia a la vista de resultados
-  const handleSearch = () => {
-    refresh();
-    setViewMode("results");
-  };
+  const renderContent = () => {
+    switch (viewMode) {
+      case "demo":
+        return <ProjectShowcase mode="demo" onBack={() => setViewMode("home")} />;
+      case "about":
+        return <ProjectShowcase mode="about" onBack={() => setViewMode("home")} />;
+      case "tech":
+        return <ProjectShowcase mode="tech" onBack={() => setViewMode("home")} />;
+      default:
+        return (
+          <div className={styles.landingContent}>
+            {/* Banner de notificación importante */}
+            <div className={styles.notificationBanner}>
+              <div className={styles.notificationIcon}>⚠️</div>
+              <div className={styles.notificationContent}>
+                <h3>Educational Demo - API Service Retired</h3>
+                <p>
+                  The original Mars Photo API is no longer maintained. 
+                  This prototype showcases the projects potential for Mars exploration.
+                </p>
+              </div>
+            </div>
 
-  // Función para volver a los filtros
-  const handleBackToFilters = () => {
-    setViewMode("filters");
-    setFilterWizardInitialStep("camera");
-  };
+            {/* Call-to-action buttons */}
+            <div className={styles.ctaSection}>
+              <button 
+                className={styles.primaryCta}
+                onClick={() => setViewMode("demo")}
+              >
+                🎭 View Project Demo
+              </button>
+              <button 
+                className={styles.secondaryCta}
+                onClick={() => setViewMode("about")}
+              >
+                📚 Learn More
+              </button>
+            </div>
 
-  const handleGoToResults = () => {
-    setViewMode("results");
+            {/* Feature cards */}
+            <div className={styles.featuresGrid}>
+              <div className={styles.featureCard}>
+                <div className={styles.featureIcon}>📷</div>
+                <h4>Photo Explorer</h4>
+                <p>Browse Mars rover images with advanced filtering</p>
+              </div>
+              
+              <div className={styles.featureCard}>
+                <div className={styles.featureIcon}>🗓️</div>
+                <h4>Sol Timeline</h4>
+                <p>Navigate mission days with interactive heat map</p>
+              </div>
+              
+              <div className={styles.featureCard}>
+                <div className={styles.featureIcon}>🎥</div>
+                <h4>Time-Lapse Viewer</h4>
+                <p>Visualize Martian landscape changes over time</p>
+              </div>
+            </div>
+          </div>
+        );
+    }
   };
 
   return (
@@ -56,74 +86,38 @@ export default function MarsVisualizerView() {
         bannerImage={bannerImageUrl}
         challengeText="NASA Space App Challenge 2025" // Opcional, ya tiene valor por defecto
       />
-
       <main className={styles.main}>
-        {/* Botón para cambiar entre vistas (solo visible cuando hay resultados) */}
-        {photoUrls.length > 0 && (
-          <div className={styles.viewToggle}>
-            <button
-              onClick={() => viewMode === "filters" ? handleGoToResults() : handleBackToFilters()}
-              className={styles.toggleButton}
+        {/* Navigation */}
+        {viewMode !== "home" && (
+          <nav className={styles.navBar}>
+            <button 
+              className={styles.navButton}
+              onClick={() => setViewMode("home")}
             >
-              {viewMode === "filters" ? "Check last results" : "← Back to Filters"}
+              🏠 Home
             </button>
-          </div>
+            <button 
+              className={styles.navButton}
+              onClick={() => setViewMode("demo")}
+            >
+              🎭 Demo
+            </button>
+            <button 
+              className={styles.navButton}
+              onClick={() => setViewMode("tech")}
+            >
+              🔧 Tech
+            </button>
+            <button 
+              className={styles.navButton}
+              onClick={() => setViewMode("about")}
+            >
+              📚 About
+            </button>
+          </nav>
         )}
 
-        {/* Mostrar FilterWizard o resultados según el viewMode */}
-        {viewMode === "filters" ? (
-          <FilterWizard
-            sol={sol || 0}
-            maxSol={maxSol}
-            camName={camName || ""}
-            availableCameras={availableCameras}
-            onSolChange={(value) => setSol?.(value)}
-            onCamChange={(value) => setCamName?.(value)}
-            onSearch={handleSearch}
-            initialStep={FilterWizardInitialStep}
-          />
-        ) : (
-          /* Vista de resultados */
-          <div className={styles.resultsView}>
-            <div className={styles.resultsHeader}>
-
-              {/* Botón para volver a filtros */}
-              {/* <button
-                onClick={handleBackToFilters}
-                className={styles.backButton}
-              >
-                ← Back to Filters
-              </button> */}
-
-              {/* disponibilidad de fotos */}
-              <div className={styles.resultsInfo}>
-                <h2 className={styles.resultsTitle}>
-                  {photoUrls.length > 0
-                    ? `${photoUrls.length} picture(s) found`
-                    : "No pictures found"
-                  }
-                </h2>
-                {totalPhotos !== undefined && photoUrls.length > 0 && (
-                  <span className={styles.totalPhotos}>
-                    {totalPhotos.toLocaleString()} photos available in total
-                  </span>
-                )}
-              </div>
-            </div>
-
-            {/* Estados de carga y error */}
-            {loading && <LoadingState />}
-            {error && <ErrorState message={error} />}
-
-            {/* Nuevo PhotoViewer */}
-            {!loading && !error && (
-              <PhotoViewer
-                imageUrls={photoUrls}
-                emptyMessage="Back to filters to see the images"
-              />
-            )}
-          </div>
-        )}
+        {renderContent()}
       </main>
 
       <Footer />
