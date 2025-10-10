@@ -1,4 +1,4 @@
-/* src/components/Header/Header.module.css */
+/* src/components/header/Header.module.css */
 .header {
   position: relative;
   margin-bottom: 2rem;
@@ -25,6 +25,25 @@
   );
 }
 
+/* Nuevo estilo para el badge del challenge */
+.challengeBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a202c;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 .content {
   position: absolute;
   bottom: 0;
@@ -47,6 +66,7 @@
   opacity: 0.9;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .banner {
     height: 200px;
@@ -62,5 +82,20 @@
   
   .subtitle {
     font-size: 1rem;
+  }
+  
+  .challengeBadge {
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .challengeBadge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    letter-spacing: 0.25px;
   }
 }

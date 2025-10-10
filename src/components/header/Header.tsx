@@ -1,4 +1,4 @@
-// src/components/Header/Header.tsx
+// src/components/header/header.tsx
 import React from "react";
 import Image from "next/image";
 import styles from "./Header.module.css";
@@ -7,9 +7,15 @@ interface HeaderProps {
     title: string;
     subtitle: string;
     bannerImage: string;
+    challengeText?: string; // Nuevo parámetro opcional
 }
 
-export default function Header({ title, subtitle, bannerImage }: HeaderProps) {
+export default function Header({
+    title,
+    subtitle,
+    bannerImage,
+    challengeText
+}: HeaderProps) {
     return (
         <header className={styles.header}>
             <div className={styles.banner}>
@@ -21,7 +27,13 @@ export default function Header({ title, subtitle, bannerImage }: HeaderProps) {
                     priority
                 />
                 <div className={styles.bannerOverlay} />
+
+                {/* Texto del challenge en esquina superior derecha */}
+                <div className={styles.challengeBadge}>
+                    {challengeText}
+                </div>
             </div>
+
             <div className={styles.content}>
                 <h1 className={styles.title}>{title}</h1>
                 <p className={styles.subtitle}>{subtitle}</p>

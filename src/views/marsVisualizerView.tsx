@@ -54,6 +54,7 @@ export default function MarsVisualizerView() {
         title="Mars Perseverance: Through the Rover's Eyes"
         subtitle="Browse Martian surface photos by mission day and camera - Nabla Team - v0.1.3 prototype"
         bannerImage={bannerImageUrl}
+        challengeText="NASA Space App Challenge 2025" // Opcional, ya tiene valor por defecto
       />
 
       <main className={styles.main}>
@@ -85,7 +86,7 @@ export default function MarsVisualizerView() {
           /* Vista de resultados */
           <div className={styles.resultsView}>
             <div className={styles.resultsHeader}>
-              
+
               {/* Botón para volver a filtros */}
               {/* <button
                 onClick={handleBackToFilters}
