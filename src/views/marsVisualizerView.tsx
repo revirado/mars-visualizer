@@ -27,7 +27,7 @@ export default function MarsVisualizerView() {
         return (
           <div className={styles.landingContent}>
             {/* Banner de notificación importante */}
-            <NotificationBanner />
+            {/* <NotificationBanner /> */}
 
             {/* Call-to-action buttons */}
             <div className={styles.ctaSection}>
@@ -79,6 +79,10 @@ export default function MarsVisualizerView() {
         challengeText="NASA Space App Challenge 2025" // Opcional, ya tiene valor por defecto
       />
       <main className={styles.main}>
+
+        {/* Banner de notificación importante */}
+        <NotificationBanner />
+
         {/* Navigation */}
         {viewMode !== "home" && (
           <nav className={styles.navBar}>
@@ -108,7 +112,6 @@ export default function MarsVisualizerView() {
             </button>
           </nav>
         )}
-
         {renderContent()}
       </main>
 
