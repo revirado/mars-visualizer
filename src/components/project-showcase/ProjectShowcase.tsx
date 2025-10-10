@@ -57,7 +57,7 @@ export default function ProjectShowcase({ mode, onBack }: ProjectShowcaseProps) 
                         <h4>Filter Wizard Component</h4>
                         <FilterWizard
                             sol={sol || 0}
-                            maxSol={10}
+                            maxSol={1000}
                             camName={camName || ""}
                             availableCameras={availableCameras}
                             onSolChange={(value) => setSol?.(value)}
@@ -67,7 +67,7 @@ export default function ProjectShowcase({ mode, onBack }: ProjectShowcaseProps) 
                     </div>
 
                     {/* Demos rápidos */}
-                    <div className={styles.quickDemos}>
+                    {/* <div className={styles.quickDemos}>
                         <h4>Feature Previews</h4>
                         <div className={styles.demoGrid}>
                             <button
@@ -88,7 +88,7 @@ export default function ProjectShowcase({ mode, onBack }: ProjectShowcaseProps) 
                                 <p>Mission day navigation</p>
                             </button>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );
@@ -166,7 +166,7 @@ export default function ProjectShowcase({ mode, onBack }: ProjectShowcaseProps) 
 
     return (
         <div className={styles.showcase}>
-            <div className={styles.showcaseHeader}>
+            {/* <div className={styles.showcaseHeader}>
                 <button className={styles.navBack} onClick={onBack}>
                     ← Back to Home
                 </button>
@@ -175,7 +175,7 @@ export default function ProjectShowcase({ mode, onBack }: ProjectShowcaseProps) 
                     {mode === "about" && "📚 Project Context"}
                     {mode === "tech" && "🔧 Technical Implementation"}
                 </h2>
-            </div>
+            </div> */}
 
             {mode === "demo" && renderDemo()}
             {mode === "about" && renderAbout()}
